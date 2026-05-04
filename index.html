@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Weather App</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main class="container">
+			<div class="weather-container">
+				<h1>Weather App</h1>
+				<p class="subtitle">
+					Search any city to get current weather details
+				</p>
+
+				<form id="searchForm" class="search-form" autocomplete="off">
+					<label for="cityInput" class="visually-hidden">
+						City Name
+					</label>
+					<input
+						id="cityInput"
+						type="text"
+						name="city"
+						placeholder="Enter city name (e.g., Nairobi)"
+						required />
+					<button type="submit">Search</button>
+				</form>
+
+				<button id="locationBtn" class="location-btn" type="button">
+					Use My Location
+				</button>
+
+				<p id="message" class="message" aria-live="polite"></p>
+
+				<div
+					id="weatherResult"
+					class="result hidden"
+					aria-live="polite">
+					<div class="result-header">
+						<h2 id="cityName">--</h2>
+						<p id="dateText">--</p>
+					</div>
+
+					<div class="temp-row">
+						<p
+							id="weatherIcon"
+							class="weather-icon"
+							aria-hidden="true">
+							⛅
+						</p>
+						<p class="temp-value">
+							<span id="temperature">--</span>
+							<span class="unit">°C</span>
+						</p>
+						<p id="weatherCodeText" class="condition">--</p>
+					</div>
+
+					<div class="details-grid">
+						<article class="detail-item">
+							<p class="detail-label">Feels Like</p>
+							<p id="feelsLike" class="detail-value">--°C</p>
+						</article>
+						<article class="detail-item">
+							<p class="detail-label">Humidity</p>
+							<p id="humidity" class="detail-value">--%</p>
+						</article>
+						<article class="detail-item">
+							<p class="detail-label">Wind Speed</p>
+							<p id="windSpeed" class="detail-value">-- km/h</p>
+						</article>
+						<article class="detail-item">
+							<p class="detail-label">Country</p>
+							<p id="countryName" class="detail-value">--</p>
+						</article>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script src="script.js"></script>
+	</body>
+</html>
