@@ -225,15 +225,20 @@ async function handleLocationSuccess(position) {
 }
 
 function handleLocationError(error) {
-  if (error.code === error.PERMISSION_DENIED) {
-    showMessage(
-      "Location permission denied. Please allow location access.",
-      true,
-    );
-    return;
-  }
+  console.error(error);
 
-  showMessage("Unable to get your location. Please try again later.", true);
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      showMessage("Location permission denied. Please allow access", true);
+      break;
+
+    case error.TIMEOUT:
+      showMessage("Location request timed out. Try again", true);
+      break;
+
+    default:
+      showMessage("Unable to get your location", true);
+  }
 }
 
 // getCurrentPosition() returns a GeolocationPosition obj instance
