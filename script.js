@@ -217,9 +217,16 @@ async function handleLocationSuccess(position) {
   const weather = await getWeather(latitude, longitude);
   if (!weather) return;
 
-  const location = await getLocationDetails(latitude, longitude);
+  let location = await getLocationDetails(latitude, longitude);
 
-  if (!location) return;
+  // Fallback if reverse geocoding fails
+  if (!location) {
+    location = {
+      name: "Your location",
+      country: "--",
+      timezone: "UTC",
+    };
+  }
 
   displayWeather(location, weather);
 }
@@ -262,6 +269,7 @@ async function getLocationDetails(latitude, longitude) {
     };
   } catch (error) {
     showMessage(error.message || "Unable to determine your location", true);
+    return null;
   }
 }
 
