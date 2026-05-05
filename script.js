@@ -251,14 +251,14 @@ async function getLocationDetails(latitude, longitude) {
     const endpoint = `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${latitude}&longitude=${longitude}&count=1&language=en&format=json`;
     const response = await fetch(endpoint);
     const data = await response.json();
-    if (!data) return;
+    if (!data.results || data.results.length === 0) return null; // safer fallback
 
     const locationDetails = data.results[0];
 
     return {
-      name: locationDetails?.name || "Your location",
-      country: locationDetails?.country || "--",
-      timezone: locationDetails?.timezone || "UTC",
+      name: locationDetails.name || "Your location",
+      country: locationDetails.country || "--",
+      timezone: locationDetails.timezone || "UTC",
     };
   } catch (error) {
     showMessage(error.message || "Unable to determine your location", true);
