@@ -40,6 +40,8 @@ Users can:
    - Allow location access
    - Weather loads automatically
 
+   NB: **Reverse geocoding is limited due to CORS restrictions from the API. A fallback label is used instead.**
+
 2. ### Clone repository
 
 ```
