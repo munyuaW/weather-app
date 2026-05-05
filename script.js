@@ -219,6 +219,8 @@ async function handleLocationSuccess(position) {
 
   const location = await getLocationDetails(latitude, longitude);
 
+  if (!location) return;
+
   displayWeather(location, weather);
 }
 
